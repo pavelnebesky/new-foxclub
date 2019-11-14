@@ -1,0 +1,45 @@
+﻿@using foxClub.Models;
+@model Fox;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<ul>
+    <li>
+        <a href="/home/?name=@Model.Name">information</a>
+    </li>
+    <li>
+        <a href="/nutritionstore/?name=@Model.Name">nutrition store</a>
+    </li>
+    <li>
+        <a href="/trickcenter/?name=@Model.Name">trick center</a>
+    </li>
+</ul>
+<img src="/assets/greenfox.png" />
+<br />
+This is @Model.Name. Currently living on
+
+@if ((Model.food == "") && (Model.drink == ""))
+    {
+            @Html.Raw("nothing");
+    }
+    else
+    {
+            @Model.food @Html.Raw(" and ") @Model.drink
+  
+    }. He / She knows @Model.tricks.Count() tricks.
+<h1>Known tricks</h1>
+
+@if (Model.tricks.Count()==0)
+{
+    <p>You know no tricks yet. Go and learn some.</p>
+}
+
+<ul>
+    @foreach (var item in Model.tricks)
+    {
+        <li>@item</li>
+    }
+</ul>
